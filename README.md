@@ -1,3 +1,4 @@
+![Capture2](https://user-images.githubusercontent.com/68812109/185893001-3e8da409-cfce-498e-bd9d-df60660ab6b3.PNG)
 # Virgin-Galactic-OpenFOAM-Simulation
 OpenFOAM simulation of flow over virgin galactic aircraft
 OpenFOAM makes use of C++ to run CFD simulations. 
