@@ -1,0 +1,52 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  9
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volVectorField;
+    location    "0";
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include        "include/initialConditions"
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform $flowVelocity;
+
+boundaryField
+{
+    //- Set patchGroups for constraint patches
+    #includeEtc "caseDicts/setConstraintTypes"
+
+    inlet
+    {
+        type           freestreamVelocity;
+        freestreamValue $internalField;
+        value           $internalField;
+    }
+
+    outlet
+    {
+        type            freestreamVelocity;
+        freestreamValue $internalField;
+        value           $internalField;
+    }
+
+    plane
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+
+    #include "include/frontBackUpperPatches"
+}
+
+
+// ************************************************************************* //
